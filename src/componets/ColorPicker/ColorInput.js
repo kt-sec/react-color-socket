@@ -12,15 +12,19 @@ function ColorInput() {
 
   const handleColorChange = (c) => {
     const hslValue = hexToHSL(c.target.value);
-    setColor({
+    const colorVal = {
       "username":user,
       "hex":c.target.value,
       "v":hslValue.s
-    });
-     sendColor({
+    };
+
+    setColor(colorVal);
+    // Send color to socket.
+    sendColor({
        "username":user,
        "hex":c.target.value
      });
+     localStorage.setItem("lastColor",colorVal.hex);
   }
 
   return (
